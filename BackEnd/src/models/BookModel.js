@@ -19,7 +19,7 @@ module.exports = {
     create: (book, callback) =>
         db.run(
             'INSERT INTO books (title, author, category, year, publisher) VALUES (?, ?, ?, ?, ?)',
-            [book.title, book.author, book.category, book.year],
+            [book.title, book.author, book.category, book.year, book.publisher],
             callback
         ),
 };

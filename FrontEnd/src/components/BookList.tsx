@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { getBooks } from '../api/bookApi';
+import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 
 interface Book{
     id: number;
@@ -23,22 +24,48 @@ const BookList:React.FC = () => {
                 console.error('erro ao buscar livros', error);
             }
         };
-
         fetchBooks();
     }, [])
+
+
   return (
-    <div>
-        <h2>
+    <TableContainer component={Paper}>
+        <Typography variant="h4" align='center' gutterBottom>
             Lista de Livros
-        </h2>
-        <ul>
-            {books.map((book) => (
-                <li key={book.id}>
-                    <strong> {book.title} por {book.author} ({book.year}) </strong>
-                </li>
-            ))}
-        </ul>
-    </div>
+        </Typography>
+        <Table>
+            <TableHead>
+                <TableRow>
+                    <TableCell>Título</TableCell>
+                    <TableCell>Autor</TableCell>
+                    <TableCell>Gênero</TableCell>
+                    <TableCell>Ano</TableCell>
+                    <TableCell>Editora</TableCell>
+                    <TableCell>Ações</TableCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                {books.map((book) => (
+                    <TableRow key={book.id}>
+                        <TableCell>{book.title}</TableCell>
+                        <TableCell> {book.author} </TableCell>
+                        <TableCell> {book.category} </TableCell>
+                        <TableCell> {book.year} </TableCell>
+                        <TableCell> {book.publisher} </TableCell>
+                        <TableCell>
+                                <Button color="primary" variant="contained" size="small">
+                                    Editar
+                                </Button>
+                                &nbsp;
+                                <Button color="secondary" variant="contained" size="small">
+                                    Excluir
+                                </Button>
+                        </TableCell>
+                    </TableRow>
+                ))}
+            </TableBody>
+        </Table>
+    </TableContainer>
   )
 }
 
