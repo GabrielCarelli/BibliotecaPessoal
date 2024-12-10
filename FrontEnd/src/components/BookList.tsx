@@ -31,7 +31,7 @@ const BookList:React.FC = () => {
   return (
     <TableContainer component={Paper}>
         <Typography variant="h4" align='center' gutterBottom>
-            Lista de Livros
+            Biblioteca
         </Typography>
         <Table>
             <TableHead>
